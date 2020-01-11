@@ -1,9 +1,9 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static\\development\\pages\\account.js"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static\\development\\pages\\index.js"],{
 
-/***/ "./components/Account/AccountHeader.js":
-/*!*********************************************!*\
-  !*** ./components/Account/AccountHeader.js ***!
-  \*********************************************/
+/***/ "./components/Index/ProductList.js":
+/*!*****************************************!*\
+  !*** ./components/Index/ProductList.js ***!
+  \*****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -12,564 +12,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "./node_modules/semantic-ui-react/dist/es/index.js");
-/* harmony import */ var _utils_formatDate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/formatDate */ "./utils/formatDate.js");
-var _jsxFileName = "C:\\Users\\Gebruiker\\Desktop\\e-commerce\\components\\Account\\AccountHeader.js";
+var _jsxFileName = "C:\\Users\\Gebruiker\\Desktop\\e-commerce\\components\\Index\\ProductList.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
+function ProductList(_ref) {
+  var products = _ref.products;
 
-function AccountHeader(_ref) {
-  var role = _ref.role,
-      email = _ref.email,
-      name = _ref.name,
-      createdAt = _ref.createdAt;
-  return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Segment"], {
-    secondary: true,
-    inverted: true,
-    color: "violet",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 6
-    },
-    __self: this
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Label"], {
-    color: "teal",
-    size: "large",
-    ribbon: true,
-    icon: "privacy",
-    style: {
-      textTransform: "capitalize"
-    },
-    content: role,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 7
-    },
-    __self: this
-  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Header"], {
-    inverted: true,
-    textAlign: "center",
-    as: "h1",
-    icon: true,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 15
-    },
-    __self: this
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Icon"], {
-    name: "user",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 16
-    },
-    __self: this
-  }), name, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Header"].Subheader, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 18
-    },
-    __self: this
-  }, email), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Header"].Subheader, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 19
-    },
-    __self: this
-  }, "Joined ", Object(_utils_formatDate__WEBPACK_IMPORTED_MODULE_2__["default"])(createdAt))));
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (AccountHeader);
-
-/***/ }),
-
-/***/ "./components/Account/AccountOrders.js":
-/*!*********************************************!*\
-  !*** ./components/Account/AccountOrders.js ***!
-  \*********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "./node_modules/semantic-ui-react/dist/es/index.js");
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/router */ "./node_modules/next/dist/client/router.js");
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _utils_formatDate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/formatDate */ "./utils/formatDate.js");
-var _jsxFileName = "C:\\Users\\Gebruiker\\Desktop\\e-commerce\\components\\Account\\AccountOrders.js";
-
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
-
-
-
-
-function AccountOrders(_ref) {
-  var orders = _ref.orders;
-  var router = Object(next_router__WEBPACK_IMPORTED_MODULE_2__["useRouter"])();
-
-  function mapOrdersToPanels(orders) {
-    return orders.map(function (order) {
+  function mapProductsToItems(products) {
+    return products.map(function (product) {
       return {
-        key: order._id,
-        title: {
-          content: __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Label"], {
-            color: "blue",
-            content: Object(_utils_formatDate__WEBPACK_IMPORTED_MODULE_3__["default"])(order.createdAt),
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 21
-            },
-            __self: this
-          })
-        },
-        content: {
-          content: __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Header, {
-            as: "h3",
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 26
-            },
-            __self: this
-          }, "Total: $", order.total, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Label"], {
-            content: order.email,
-            icon: "mail",
-            basic: true,
-            horizontal: true,
-            style: {
-              marginLeft: "1em"
-            },
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 28
-            },
-            __self: this
-          })), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"], {
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 36
-            },
-            __self: this
-          }, order.products.map(function (p) {
-            return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, {
-              key: p.product._id,
-              __source: {
-                fileName: _jsxFileName,
-                lineNumber: 38
-              },
-              __self: this
-            }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Image"], {
-              avatar: true,
-              src: p.product.mediaUrl,
-              __source: {
-                fileName: _jsxFileName,
-                lineNumber: 39
-              },
-              __self: this
-            }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Content, {
-              __source: {
-                fileName: _jsxFileName,
-                lineNumber: 40
-              },
-              __self: this
-            }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Header, {
-              __source: {
-                fileName: _jsxFileName,
-                lineNumber: 41
-              },
-              __self: this
-            }, p.product.name), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Description, {
-              __source: {
-                fileName: _jsxFileName,
-                lineNumber: 42
-              },
-              __self: this
-            }, p.quantity, " \xB7 $", p.product.price)), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Content, {
-              floated: "right",
-              __source: {
-                fileName: _jsxFileName,
-                lineNumber: 46
-              },
-              __self: this
-            }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Label"], {
-              tag: true,
-              color: "red",
-              size: "tiny",
-              __source: {
-                fileName: _jsxFileName,
-                lineNumber: 47
-              },
-              __self: this
-            }, p.product.sku)));
-          })))
-        }
+        header: product.name,
+        image: product.mediaUrl,
+        meta: "$".concat(product.price),
+        color: "teal",
+        fluid: true,
+        childKey: product._id,
+        href: "/product?_id=".concat(product._id)
       };
     });
   }
 
-  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Header"], {
-    as: "h2",
+  return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Card"].Group, {
+    stackable: true,
+    itemsPerRow: "3",
+    centered: true,
+    items: mapProductsToItems(products),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 62
+      lineNumber: 17
     },
     __self: this
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Icon"], {
-    name: "folder open",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 63
-    },
-    __self: this
-  }), "Order History"), orders.length === 0 ? __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Segment"], {
-    inverted: true,
-    tertiary: true,
-    color: "grey",
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (ProductList);
+
+/***/ }),
+
+/***/ "./components/Index/ProductPagination.js":
+/*!***********************************************!*\
+  !*** ./components/Index/ProductPagination.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/router */ "./node_modules/next/dist/client/router.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! semantic-ui-react */ "./node_modules/semantic-ui-react/dist/es/index.js");
+var _jsxFileName = "C:\\Users\\Gebruiker\\Desktop\\e-commerce\\components\\Index\\ProductPagination.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+function ProductPagination(_ref) {
+  var totalPages = _ref.totalPages;
+  var router = Object(next_router__WEBPACK_IMPORTED_MODULE_1__["useRouter"])();
+  return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Container"], {
     textAlign: "center",
+    style: {
+      margin: "2em"
+    },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 67
+      lineNumber: 8
     },
     __self: this
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Header"], {
-    icon: true,
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Pagination"], {
+    defaultActivePage: 1,
+    totalPages: totalPages,
+    onPageChange: function onPageChange(event, data) {
+      data.activePage === 1 ? router.push("/") : router.push("/?page=".concat(data.activePage));
+    },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 68
-    },
-    __self: this
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Icon"], {
-    name: "copy outline",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 69
-    },
-    __self: this
-  }), "No past orders."), __jsx("div", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 72
-    },
-    __self: this
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Button"], {
-    onClick: function onClick() {
-      return router.push("/");
-    },
-    color: "orange",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 73
-    },
-    __self: this
-  }, "View Products"))) : __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Accordion"], {
-    fluid: true,
-    styled: true,
-    exclusive: false,
-    panels: mapOrdersToPanels(orders),
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 79
+      lineNumber: 9
     },
     __self: this
   }));
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (AccountOrders);
-
-/***/ }),
-
-/***/ "./components/Account/AccountPermissions.js":
-/*!**************************************************!*\
-  !*** ./components/Account/AccountPermissions.js ***!
-  \**************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/regenerator */ "./node_modules/@babel/runtime-corejs2/regenerator/index.js");
-/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime-corejs2/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/slicedToArray */ "./node_modules/@babel/runtime-corejs2/helpers/esm/slicedToArray.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! semantic-ui-react */ "./node_modules/semantic-ui-react/dist/es/index.js");
-/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/src/js.cookie.js");
-/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _utils_baseUrl__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../utils/baseUrl */ "./utils/baseUrl.js");
-/* harmony import */ var _utils_formatDate__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../utils/formatDate */ "./utils/formatDate.js");
-
-
-
-var _jsxFileName = "C:\\Users\\Gebruiker\\Desktop\\e-commerce\\components\\Account\\AccountPermissions.js";
-var __jsx = react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement;
-
-
-
-
-
-
-
-function AccountPermissions() {
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_3___default.a.useState([]),
-      _React$useState2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__["default"])(_React$useState, 2),
-      users = _React$useState2[0],
-      setUsers = _React$useState2[1];
-
-  react__WEBPACK_IMPORTED_MODULE_3___default.a.useEffect(function () {
-    getUsers();
-  }, []);
-
-  function getUsers() {
-    return _getUsers.apply(this, arguments);
-  }
-
-  function _getUsers() {
-    _getUsers = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])(
-    /*#__PURE__*/
-    _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var url, token, payload, response;
-      return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              url = "".concat(_utils_baseUrl__WEBPACK_IMPORTED_MODULE_7__["default"], "/api/users");
-              token = js_cookie__WEBPACK_IMPORTED_MODULE_6___default.a.get("token");
-              payload = {
-                headers: {
-                  Authorization: token
-                }
-              };
-              _context.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_4___default.a.get(url, payload);
-
-            case 5:
-              response = _context.sent;
-              setUsers(response.data);
-
-            case 7:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }));
-    return _getUsers.apply(this, arguments);
-  }
-
-  return __jsx("div", {
-    style: {
-      margin: "2em 0"
-    },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 24
-    },
-    __self: this
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__["Header"], {
-    as: "h2",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 25
-    },
-    __self: this
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__["Icon"], {
-    name: "settings",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 26
-    },
-    __self: this
-  }), "User Permissions"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__["Table"], {
-    compact: true,
-    celled: true,
-    definition: true,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 29
-    },
-    __self: this
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__["Table"].Header, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 30
-    },
-    __self: this
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__["Table"].Row, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 31
-    },
-    __self: this
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__["Table"].HeaderCell, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 32
-    },
-    __self: this
-  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__["Table"].HeaderCell, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 33
-    },
-    __self: this
-  }, "Name"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__["Table"].HeaderCell, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 34
-    },
-    __self: this
-  }, "Email"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__["Table"].HeaderCell, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 35
-    },
-    __self: this
-  }, "Joined"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__["Table"].HeaderCell, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 36
-    },
-    __self: this
-  }, "Updated"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__["Table"].HeaderCell, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 37
-    },
-    __self: this
-  }, "Role"))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__["Table"].Body, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 41
-    },
-    __self: this
-  }, users.map(function (user) {
-    return __jsx(UserPermission, {
-      key: user._id,
-      user: user,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 43
-      },
-      __self: this
-    });
-  }))));
-}
-
-function UserPermission(_ref) {
-  var user = _ref.user;
-
-  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_3___default.a.useState(user.role === "admin"),
-      _React$useState4 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__["default"])(_React$useState3, 2),
-      admin = _React$useState4[0],
-      setAdmin = _React$useState4[1];
-
-  var isFirstRun = react__WEBPACK_IMPORTED_MODULE_3___default.a.useRef(true);
-  react__WEBPACK_IMPORTED_MODULE_3___default.a.useEffect(function () {
-    if (isFirstRun.current) {
-      isFirstRun.current = false;
-      return;
-    }
-
-    updatePermission();
-  }, [admin]);
-
-  function handleChangePermission() {
-    setAdmin(function (prevState) {
-      return !prevState;
-    });
-  }
-
-  function updatePermission() {
-    return _updatePermission.apply(this, arguments);
-  }
-
-  function _updatePermission() {
-    _updatePermission = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])(
-    /*#__PURE__*/
-    _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      var url, payload;
-      return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              url = "".concat(_utils_baseUrl__WEBPACK_IMPORTED_MODULE_7__["default"], "/api/account");
-              payload = {
-                _id: user._id,
-                role: admin ? "admin" : "user"
-              };
-              _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_4___default.a.put(url, payload);
-
-            case 4:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }));
-    return _updatePermission.apply(this, arguments);
-  }
-
-  return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__["Table"].Row, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 74
-    },
-    __self: this
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__["Table"].Cell, {
-    collapsing: true,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 75
-    },
-    __self: this
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__["Checkbox"], {
-    checked: admin,
-    toggle: true,
-    onChange: handleChangePermission,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 76
-    },
-    __self: this
-  })), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__["Table"].Cell, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 78
-    },
-    __self: this
-  }, user.name), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__["Table"].Cell, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 79
-    },
-    __self: this
-  }, user.email), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__["Table"].Cell, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 80
-    },
-    __self: this
-  }, Object(_utils_formatDate__WEBPACK_IMPORTED_MODULE_8__["default"])(user.createdAt)), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__["Table"].Cell, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 81
-    },
-    __self: this
-  }, Object(_utils_formatDate__WEBPACK_IMPORTED_MODULE_8__["default"])(user.updatedAt)), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__["Table"].Cell, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 82
-    },
-    __self: this
-  }, admin ? "admin" : "user"));
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (AccountPermissions);
+/* harmony default export */ __webpack_exports__["default"] = (ProductPagination);
 
 /***/ }),
 
@@ -893,25 +422,6 @@ module.exports = _createClass;
 
 /***/ }),
 
-/***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/arrayWithHoles.js":
-/*!***************************************************************************!*\
-  !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/arrayWithHoles.js ***!
-  \***************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _arrayWithHoles; });
-/* harmony import */ var _core_js_array_is_array__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core-js/array/is-array */ "./node_modules/@babel/runtime-corejs2/core-js/array/is-array.js");
-/* harmony import */ var _core_js_array_is_array__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_array_is_array__WEBPACK_IMPORTED_MODULE_0__);
-
-function _arrayWithHoles(arr) {
-  if (_core_js_array_is_array__WEBPACK_IMPORTED_MODULE_0___default()(arr)) return arr;
-}
-
-/***/ }),
-
 /***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/asyncToGenerator.js":
 /*!*****************************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/asyncToGenerator.js ***!
@@ -960,118 +470,6 @@ function _asyncToGenerator(fn) {
       _next(undefined);
     });
   };
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/extends.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/extends.js ***!
-  \********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _extends; });
-/* harmony import */ var _core_js_object_assign__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core-js/object/assign */ "./node_modules/@babel/runtime-corejs2/core-js/object/assign.js");
-/* harmony import */ var _core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0__);
-
-function _extends() {
-  _extends = _core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default.a || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/iterableToArrayLimit.js":
-/*!*********************************************************************************!*\
-  !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/iterableToArrayLimit.js ***!
-  \*********************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _iterableToArrayLimit; });
-/* harmony import */ var _core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core-js/get-iterator */ "./node_modules/@babel/runtime-corejs2/core-js/get-iterator.js");
-/* harmony import */ var _core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0__);
-
-function _iterableToArrayLimit(arr, i) {
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-  var _e = undefined;
-
-  try {
-    for (var _i = _core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0___default()(arr), _s; !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
-
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i["return"] != null) _i["return"]();
-    } finally {
-      if (_d) throw _e;
-    }
-  }
-
-  return _arr;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/nonIterableRest.js":
-/*!****************************************************************************!*\
-  !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/nonIterableRest.js ***!
-  \****************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _nonIterableRest; });
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance");
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/slicedToArray.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/slicedToArray.js ***!
-  \**************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _slicedToArray; });
-/* harmony import */ var _arrayWithHoles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./arrayWithHoles */ "./node_modules/@babel/runtime-corejs2/helpers/esm/arrayWithHoles.js");
-/* harmony import */ var _iterableToArrayLimit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./iterableToArrayLimit */ "./node_modules/@babel/runtime-corejs2/helpers/esm/iterableToArrayLimit.js");
-/* harmony import */ var _nonIterableRest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./nonIterableRest */ "./node_modules/@babel/runtime-corejs2/helpers/esm/nonIterableRest.js");
-
-
-
-function _slicedToArray(arr, i) {
-  return Object(_arrayWithHoles__WEBPACK_IMPORTED_MODULE_0__["default"])(arr) || Object(_iterableToArrayLimit__WEBPACK_IMPORTED_MODULE_1__["default"])(arr, i) || Object(_nonIterableRest__WEBPACK_IMPORTED_MODULE_2__["default"])();
 }
 
 /***/ }),
@@ -4324,216 +3722,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	} else {}
 }());
-
-
-/***/ }),
-
-/***/ "./node_modules/cookie/index.js":
-/*!**************************************!*\
-  !*** ./node_modules/cookie/index.js ***!
-  \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*!
- * cookie
- * Copyright(c) 2012-2014 Roman Shtylman
- * Copyright(c) 2015 Douglas Christopher Wilson
- * MIT Licensed
- */
-
-
-
-/**
- * Module exports.
- * @public
- */
-
-exports.parse = parse;
-exports.serialize = serialize;
-
-/**
- * Module variables.
- * @private
- */
-
-var decode = decodeURIComponent;
-var encode = encodeURIComponent;
-var pairSplitRegExp = /; */;
-
-/**
- * RegExp to match field-content in RFC 7230 sec 3.2
- *
- * field-content = field-vchar [ 1*( SP / HTAB ) field-vchar ]
- * field-vchar   = VCHAR / obs-text
- * obs-text      = %x80-FF
- */
-
-var fieldContentRegExp = /^[\u0009\u0020-\u007e\u0080-\u00ff]+$/;
-
-/**
- * Parse a cookie header.
- *
- * Parse the given cookie header string into an object
- * The object has the various cookies as keys(names) => values
- *
- * @param {string} str
- * @param {object} [options]
- * @return {object}
- * @public
- */
-
-function parse(str, options) {
-  if (typeof str !== 'string') {
-    throw new TypeError('argument str must be a string');
-  }
-
-  var obj = {}
-  var opt = options || {};
-  var pairs = str.split(pairSplitRegExp);
-  var dec = opt.decode || decode;
-
-  for (var i = 0; i < pairs.length; i++) {
-    var pair = pairs[i];
-    var eq_idx = pair.indexOf('=');
-
-    // skip things that don't look like key=value
-    if (eq_idx < 0) {
-      continue;
-    }
-
-    var key = pair.substr(0, eq_idx).trim()
-    var val = pair.substr(++eq_idx, pair.length).trim();
-
-    // quoted values
-    if ('"' == val[0]) {
-      val = val.slice(1, -1);
-    }
-
-    // only assign once
-    if (undefined == obj[key]) {
-      obj[key] = tryDecode(val, dec);
-    }
-  }
-
-  return obj;
-}
-
-/**
- * Serialize data into a cookie header.
- *
- * Serialize the a name value pair into a cookie string suitable for
- * http headers. An optional options object specified cookie parameters.
- *
- * serialize('foo', 'bar', { httpOnly: true })
- *   => "foo=bar; httpOnly"
- *
- * @param {string} name
- * @param {string} val
- * @param {object} [options]
- * @return {string}
- * @public
- */
-
-function serialize(name, val, options) {
-  var opt = options || {};
-  var enc = opt.encode || encode;
-
-  if (typeof enc !== 'function') {
-    throw new TypeError('option encode is invalid');
-  }
-
-  if (!fieldContentRegExp.test(name)) {
-    throw new TypeError('argument name is invalid');
-  }
-
-  var value = enc(val);
-
-  if (value && !fieldContentRegExp.test(value)) {
-    throw new TypeError('argument val is invalid');
-  }
-
-  var str = name + '=' + value;
-
-  if (null != opt.maxAge) {
-    var maxAge = opt.maxAge - 0;
-    if (isNaN(maxAge)) throw new Error('maxAge should be a Number');
-    str += '; Max-Age=' + Math.floor(maxAge);
-  }
-
-  if (opt.domain) {
-    if (!fieldContentRegExp.test(opt.domain)) {
-      throw new TypeError('option domain is invalid');
-    }
-
-    str += '; Domain=' + opt.domain;
-  }
-
-  if (opt.path) {
-    if (!fieldContentRegExp.test(opt.path)) {
-      throw new TypeError('option path is invalid');
-    }
-
-    str += '; Path=' + opt.path;
-  }
-
-  if (opt.expires) {
-    if (typeof opt.expires.toUTCString !== 'function') {
-      throw new TypeError('option expires is invalid');
-    }
-
-    str += '; Expires=' + opt.expires.toUTCString();
-  }
-
-  if (opt.httpOnly) {
-    str += '; HttpOnly';
-  }
-
-  if (opt.secure) {
-    str += '; Secure';
-  }
-
-  if (opt.sameSite) {
-    var sameSite = typeof opt.sameSite === 'string'
-      ? opt.sameSite.toLowerCase() : opt.sameSite;
-
-    switch (sameSite) {
-      case true:
-        str += '; SameSite=Strict';
-        break;
-      case 'lax':
-        str += '; SameSite=Lax';
-        break;
-      case 'strict':
-        str += '; SameSite=Strict';
-        break;
-      case 'none':
-        str += '; SameSite=None';
-        break;
-      default:
-        throw new TypeError('option sameSite is invalid');
-    }
-  }
-
-  return str;
-}
-
-/**
- * Try decoding a string using a decoding function.
- *
- * @param {string} str
- * @param {function} decode
- * @private
- */
-
-function tryDecode(str, decode) {
-  try {
-    return decode(str);
-  } catch (e) {
-    return str;
-  }
-}
 
 
 /***/ }),
@@ -7900,184 +7088,6 @@ module.exports = function isBuffer (obj) {
   return obj != null && obj.constructor != null &&
     typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
 }
-
-
-/***/ }),
-
-/***/ "./node_modules/js-cookie/src/js.cookie.js":
-/*!*************************************************!*\
-  !*** ./node_modules/js-cookie/src/js.cookie.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * JavaScript Cookie v2.2.1
- * https://github.com/js-cookie/js-cookie
- *
- * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
- * Released under the MIT license
- */
-;(function (factory) {
-	var registeredInModuleLoader;
-	if (true) {
-		!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
-				__WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-		registeredInModuleLoader = true;
-	}
-	if (true) {
-		module.exports = factory();
-		registeredInModuleLoader = true;
-	}
-	if (!registeredInModuleLoader) {
-		var OldCookies = window.Cookies;
-		var api = window.Cookies = factory();
-		api.noConflict = function () {
-			window.Cookies = OldCookies;
-			return api;
-		};
-	}
-}(function () {
-	function extend () {
-		var i = 0;
-		var result = {};
-		for (; i < arguments.length; i++) {
-			var attributes = arguments[ i ];
-			for (var key in attributes) {
-				result[key] = attributes[key];
-			}
-		}
-		return result;
-	}
-
-	function decode (s) {
-		return s.replace(/(%[0-9A-Z]{2})+/g, decodeURIComponent);
-	}
-
-	function init (converter) {
-		function api() {}
-
-		function set (key, value, attributes) {
-			if (typeof document === 'undefined') {
-				return;
-			}
-
-			attributes = extend({
-				path: '/'
-			}, api.defaults, attributes);
-
-			if (typeof attributes.expires === 'number') {
-				attributes.expires = new Date(new Date() * 1 + attributes.expires * 864e+5);
-			}
-
-			// We're using "expires" because "max-age" is not supported by IE
-			attributes.expires = attributes.expires ? attributes.expires.toUTCString() : '';
-
-			try {
-				var result = JSON.stringify(value);
-				if (/^[\{\[]/.test(result)) {
-					value = result;
-				}
-			} catch (e) {}
-
-			value = converter.write ?
-				converter.write(value, key) :
-				encodeURIComponent(String(value))
-					.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
-
-			key = encodeURIComponent(String(key))
-				.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent)
-				.replace(/[\(\)]/g, escape);
-
-			var stringifiedAttributes = '';
-			for (var attributeName in attributes) {
-				if (!attributes[attributeName]) {
-					continue;
-				}
-				stringifiedAttributes += '; ' + attributeName;
-				if (attributes[attributeName] === true) {
-					continue;
-				}
-
-				// Considers RFC 6265 section 5.2:
-				// ...
-				// 3.  If the remaining unparsed-attributes contains a %x3B (";")
-				//     character:
-				// Consume the characters of the unparsed-attributes up to,
-				// not including, the first %x3B (";") character.
-				// ...
-				stringifiedAttributes += '=' + attributes[attributeName].split(';')[0];
-			}
-
-			return (document.cookie = key + '=' + value + stringifiedAttributes);
-		}
-
-		function get (key, json) {
-			if (typeof document === 'undefined') {
-				return;
-			}
-
-			var jar = {};
-			// To prevent the for loop in the first place assign an empty array
-			// in case there are no cookies at all.
-			var cookies = document.cookie ? document.cookie.split('; ') : [];
-			var i = 0;
-
-			for (; i < cookies.length; i++) {
-				var parts = cookies[i].split('=');
-				var cookie = parts.slice(1).join('=');
-
-				if (!json && cookie.charAt(0) === '"') {
-					cookie = cookie.slice(1, -1);
-				}
-
-				try {
-					var name = decode(parts[0]);
-					cookie = (converter.read || converter)(cookie, name) ||
-						decode(cookie);
-
-					if (json) {
-						try {
-							cookie = JSON.parse(cookie);
-						} catch (e) {}
-					}
-
-					jar[name] = cookie;
-
-					if (key === name) {
-						break;
-					}
-				} catch (e) {}
-			}
-
-			return key ? jar[key] : jar;
-		}
-
-		api.set = set;
-		api.get = function (key) {
-			return get(key, false /* read as raw */);
-		};
-		api.getJSON = function (key) {
-			return get(key, true /* read as json */);
-		};
-		api.remove = function (key, attributes) {
-			set(key, '', extend(attributes, {
-				expires: -1
-			}));
-		};
-
-		api.defaults = {};
-
-		api.withConverter = init;
-
-		return api;
-	}
-
-	return init(function () {});
-}));
 
 
 /***/ }),
@@ -25048,21 +24058,21 @@ exports.SUPPORTS_PERFORMANCE_USER_TIMING = exports.SUPPORTS_PERFORMANCE && typeo
 
 /***/ }),
 
-/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Faccount&absolutePagePath=C%3A%5CUsers%5CGebruiker%5CDesktop%5Ce-commerce%5Cpages%5Caccount.js!./":
-/*!****************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Faccount&absolutePagePath=C%3A%5CUsers%5CGebruiker%5CDesktop%5Ce-commerce%5Cpages%5Caccount.js ***!
-  \****************************************************************************************************************************************************************************************/
+/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=C%3A%5CUsers%5CGebruiker%5CDesktop%5Ce-commerce%5Cpages%5Cindex.js!./":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=C%3A%5CUsers%5CGebruiker%5CDesktop%5Ce-commerce%5Cpages%5Cindex.js ***!
+  \*******************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-    (window.__NEXT_P=window.__NEXT_P||[]).push(["/account", function() {
-      var page = __webpack_require__(/*! ./pages/account.js */ "./pages/account.js")
+    (window.__NEXT_P=window.__NEXT_P||[]).push(["/", function() {
+      var page = __webpack_require__(/*! ./pages/index.js */ "./pages/index.js")
       if(true) {
-        module.hot.accept(/*! ./pages/account.js */ "./pages/account.js", function() {
-          if(!next.router.components["/account"]) return
-          var updatedPage = __webpack_require__(/*! ./pages/account.js */ "./pages/account.js")
-          next.router.update("/account", updatedPage.default || updatedPage)
+        module.hot.accept(/*! ./pages/index.js */ "./pages/index.js", function() {
+          if(!next.router.components["/"]) return
+          var updatedPage = __webpack_require__(/*! ./pages/index.js */ "./pages/index.js")
+          next.router.update("/", updatedPage.default || updatedPage)
         })
       }
       return { page: page.default || page }
@@ -25334,153 +24344,6 @@ function withRouter(ComposedComponent) {
 
   return WithRouteWrapper;
 }
-
-/***/ }),
-
-/***/ "./node_modules/nookies/dist/index.js":
-/*!********************************************!*\
-  !*** ./node_modules/nookies/dist/index.js ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var cookie = __webpack_require__(/*! cookie */ "./node_modules/cookie/index.js");
-var setCookieParser = __webpack_require__(/*! set-cookie-parser */ "./node_modules/set-cookie-parser/lib/set-cookie.js");
-var isBrowser = function () { return typeof window !== 'undefined'; };
-/**
- * Compare the cookie and return true if the cookies has equivalent
- * options and the cookies would be overwritten in the browser storage.
- *
- * @param a first Cookie for comparision
- * @param b second Cookie for comparision
- */
-function areCookiesEqual(a, b) {
-    return (a.name === b.name &&
-        a.domain === b.domain &&
-        a.path === b.path &&
-        a.httpOnly === b.httpOnly &&
-        a.secure === b.secure);
-}
-/**
- * Create an instance of the Cookie interface
- *
- * @param name name of the Cookie
- * @param value value of the Cookie
- * @param options Cookie options
- */
-function createCookie(name, value, options) {
-    return {
-        name: name,
-        expires: options.expires,
-        maxAge: options.maxAge,
-        secure: options.secure,
-        httpOnly: options.httpOnly,
-        domain: options.domain,
-        value: value,
-        path: options.path,
-    };
-}
-/**
- *
- * Parses cookies.
- *
- * @param ctx
- * @param options
- */
-function parseCookies(ctx, options) {
-    if (ctx && ctx.req && ctx.req.headers && ctx.req.headers.cookie) {
-        return cookie.parse(ctx.req.headers.cookie, options);
-    }
-    if (isBrowser()) {
-        return cookie.parse(document.cookie, options);
-    }
-    return {};
-}
-exports.parseCookies = parseCookies;
-/**
- *
- * Sets a cookie.
- *
- * @param ctx
- * @param name
- * @param value
- * @param options
- */
-function setCookie(ctx, name, value, options) {
-    if (ctx && ctx.res && ctx.res.getHeader && ctx.res.setHeader) {
-        var cookies = ctx.res.getHeader('Set-Cookie') || [];
-        if (typeof cookies === 'string')
-            cookies = [cookies];
-        if (typeof cookies === 'number')
-            cookies = [];
-        var parsedCookies = setCookieParser.parse(cookies);
-        var cookiesToSet_1 = [];
-        parsedCookies.forEach(function (parsedCookie) {
-            if (!areCookiesEqual(parsedCookie, createCookie(name, value, options))) {
-                cookiesToSet_1.push(cookie.serialize(parsedCookie.name, parsedCookie.value, {
-                    domain: parsedCookie.domain,
-                    path: parsedCookie.path,
-                    httpOnly: parsedCookie.httpOnly,
-                    secure: parsedCookie.secure,
-                    maxAge: parsedCookie.maxAge,
-                    expires: parsedCookie.expires,
-                }));
-            }
-        });
-        cookiesToSet_1.push(cookie.serialize(name, value, options));
-        ctx.res.setHeader('Set-Cookie', cookiesToSet_1);
-    }
-    if (isBrowser()) {
-        document.cookie = cookie.serialize(name, value, options);
-    }
-    return {};
-}
-exports.setCookie = setCookie;
-/**
- *
- * Destroys a cookie with a particular name.
- *
- * @param ctx
- * @param name
- * @param options
- */
-function destroyCookie(ctx, name, options) {
-    var opts = __assign({}, (options || {}), { maxAge: -1 });
-    if (ctx && ctx.res && ctx.res.setHeader && ctx.res.getHeader) {
-        var cookies = ctx.res.getHeader('Set-Cookie') || [];
-        if (typeof cookies === 'string')
-            cookies = [cookies];
-        if (typeof cookies === 'number')
-            cookies = [];
-        cookies.push(cookie.serialize(name, '', opts));
-        ctx.res.setHeader('Set-Cookie', cookies);
-    }
-    if (isBrowser()) {
-        document.cookie = cookie.serialize(name, '', opts);
-    }
-    return {};
-}
-exports.destroyCookie = destroyCookie;
-exports.default = {
-    set: setCookie,
-    get: parseCookies,
-    destroy: destroyCookie,
-};
-//# sourceMappingURL=index.js.map
 
 /***/ }),
 
@@ -57985,189 +56848,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/set-cookie-parser/lib/set-cookie.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/set-cookie-parser/lib/set-cookie.js ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var defaultParseOptions = {
-  decodeValues: true,
-  map: false
-};
-
-function isNonEmptyString(str) {
-  return typeof str === "string" && !!str.trim();
-}
-
-function parseString(setCookieValue, options) {
-  var parts = setCookieValue.split(";").filter(isNonEmptyString);
-  var nameValue = parts.shift().split("=");
-  var name = nameValue.shift();
-  var value = nameValue.join("="); // everything after the first =, joined by a "=" if there was more than one part
-  var cookie = {
-    name: name, // grab everything before the first =
-    value: options.decodeValues ? decodeURIComponent(value) : value // decode cookie value
-  };
-
-  parts.forEach(function(part) {
-    var sides = part.split("=");
-    var key = sides
-      .shift()
-      .trimLeft()
-      .toLowerCase();
-    var value = sides.join("=");
-    if (key === "expires") {
-      cookie.expires = new Date(value);
-    } else if (key === "max-age") {
-      cookie.maxAge = parseInt(value, 10);
-    } else if (key === "secure") {
-      cookie.secure = true;
-    } else if (key === "httponly") {
-      cookie.httpOnly = true;
-    } else if (key === "samesite") {
-      cookie.sameSite = value;
-    } else {
-      cookie[key] = value;
-    }
-  });
-
-  return cookie;
-}
-
-function parse(input, options) {
-  if (!input) {
-    return [];
-  }
-  if (input.headers) {
-    input =
-      // fast-path for node.js (which automatically normalizes header names to lower-case
-      input.headers["set-cookie"] ||
-      // slow-path for other environments - see #25
-      input.headers[
-        Object.keys(input.headers).find(function(key) {
-          return key.toLowerCase() === "set-cookie";
-        })
-      ];
-  }
-  if (!Array.isArray(input)) {
-    input = [input];
-  }
-
-  options = options
-    ? Object.assign({}, defaultParseOptions, options)
-    : defaultParseOptions;
-
-  if (!options.map) {
-    return input.filter(isNonEmptyString).map(function(str) {
-      return parseString(str, options);
-    });
-  } else {
-    var cookies = {};
-    return input.filter(isNonEmptyString).reduce(function(cookies, str) {
-      var cookie = parseString(str, options);
-      cookies[cookie.name] = cookie;
-      return cookies;
-    }, cookies);
-  }
-}
-
-/*
-  Set-Cookie header field-values are sometimes comma joined in one string. This splits them without choking on commas
-  that are within a single set-cookie field-value, such as in the Expires portion.
-
-  This is uncommon, but explicitly allowed - see https://tools.ietf.org/html/rfc2616#section-4.2
-  Node.js does this for every header *except* set-cookie - see https://github.com/nodejs/node/blob/d5e363b77ebaf1caf67cd7528224b651c86815c1/lib/_http_incoming.js#L128
-  React Native's fetch does this for *every* header, including set-cookie.
-
-  Based on: https://github.com/google/j2objc/commit/16820fdbc8f76ca0c33472810ce0cb03d20efe25
-  Credits to: https://github.com/tomball for original and https://github.com/chrusart for JavaScript implementation
-*/
-function splitCookiesString(cookiesString) {
-  if (Array.isArray(cookiesString)) {
-    return cookiesString;
-  }
-  if (typeof cookiesString !== "string") {
-    return [];
-  }
-
-  var cookiesStrings = [];
-  var pos = 0;
-  var start;
-  var ch;
-  var lastComma;
-  var nextStart;
-  var cookiesSeparatorFound;
-
-  function skipWhitespace() {
-    while (pos < cookiesString.length && /\s/.test(cookiesString.charAt(pos))) {
-      pos += 1;
-    }
-    return pos < cookiesString.length;
-  }
-
-  function notSpecialChar() {
-    ch = cookiesString.charAt(pos);
-
-    return ch !== "=" && ch !== ";" && ch !== ",";
-  }
-
-  while (pos < cookiesString.length) {
-    start = pos;
-    cookiesSeparatorFound = false;
-
-    while (skipWhitespace()) {
-      ch = cookiesString.charAt(pos);
-      if (ch === ",") {
-        // ',' is a cookie separator if we have later first '=', not ';' or ','
-        lastComma = pos;
-        pos += 1;
-
-        skipWhitespace();
-        nextStart = pos;
-
-        while (pos < cookiesString.length && notSpecialChar()) {
-          pos += 1;
-        }
-
-        // currently special character
-        if (pos < cookiesString.length && cookiesString.charAt(pos) === "=") {
-          // we found cookies separator
-          cookiesSeparatorFound = true;
-          // pos is inside the next cookie, so back up and return it.
-          pos = nextStart;
-          cookiesStrings.push(cookiesString.substring(start, lastComma));
-          start = pos;
-        } else {
-          // in param ',' or param separator ';',
-          // we continue from that comma
-          pos = lastComma + 1;
-        }
-      } else {
-        pos += 1;
-      }
-    }
-
-    if (!cookiesSeparatorFound || pos >= cookiesString.length) {
-      cookiesStrings.push(cookiesString.substring(start, cookiesString.length));
-    }
-  }
-
-  return cookiesStrings;
-}
-
-module.exports = parse;
-module.exports.parse = parse;
-module.exports.parseString;
-module.exports.splitCookiesString = splitCookiesString;
-
-
-/***/ }),
-
 /***/ "./node_modules/shallowequal/index.js":
 /*!********************************************!*\
   !*** ./node_modules/shallowequal/index.js ***!
@@ -59135,10 +57815,10 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./pages/account.js":
-/*!**************************!*\
-  !*** ./pages/account.js ***!
-  \**************************/
+/***/ "./pages/index.js":
+/*!************************!*\
+  !*** ./pages/index.js ***!
+  \************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -59147,93 +57827,72 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/regenerator */ "./node_modules/@babel/runtime-corejs2/regenerator/index.js");
 /* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime-corejs2/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/extends */ "./node_modules/@babel/runtime-corejs2/helpers/esm/extends.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _components_Account_AccountHeader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Account/AccountHeader */ "./components/Account/AccountHeader.js");
-/* harmony import */ var _components_Account_AccountOrders__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Account/AccountOrders */ "./components/Account/AccountOrders.js");
-/* harmony import */ var _components_Account_AccountPermissions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Account/AccountPermissions */ "./components/Account/AccountPermissions.js");
-/* harmony import */ var nookies__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! nookies */ "./node_modules/nookies/dist/index.js");
-/* harmony import */ var nookies__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(nookies__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _utils_baseUrl__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../utils/baseUrl */ "./utils/baseUrl.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components_Index_ProductList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Index/ProductList */ "./components/Index/ProductList.js");
+/* harmony import */ var _components_Index_ProductPagination__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Index/ProductPagination */ "./components/Index/ProductPagination.js");
+/* harmony import */ var _utils_baseUrl__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/baseUrl */ "./utils/baseUrl.js");
 
 
-
-var _jsxFileName = "C:\\Users\\Gebruiker\\Desktop\\e-commerce\\pages\\account.js";
-
-var __jsx = react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement;
+var _jsxFileName = "C:\\Users\\Gebruiker\\Desktop\\e-commerce\\pages\\index.js";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
 
 
 
 
 
 
-
-function Account(_ref) {
-  var user = _ref.user,
-      orders = _ref.orders;
-  return __jsx(react__WEBPACK_IMPORTED_MODULE_3___default.a.Fragment, null, __jsx(_components_Account_AccountHeader__WEBPACK_IMPORTED_MODULE_4__["default"], Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_2__["default"])({}, user, {
+function Home(_ref) {
+  var products = _ref.products,
+      totalPages = _ref.totalPages;
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, __jsx(_components_Index_ProductList__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    products: products,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 10
+    },
+    __self: this
+  }), __jsx(_components_Index_ProductPagination__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    totalPages: totalPages,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 11
     },
     __self: this
-  })), __jsx(_components_Account_AccountOrders__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    orders: orders,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 12
-    },
-    __self: this
-  }), user.role === "root" && __jsx(_components_Account_AccountPermissions__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 13
-    },
-    __self: this
   }));
 }
 
-Account.getInitialProps =
+Home.getInitialProps =
 /*#__PURE__*/
 function () {
   var _ref2 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])(
   /*#__PURE__*/
   _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(ctx) {
-    var _parseCookies, token, payload, url, response;
-
+    var page, size, url, payload, response;
     return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _parseCookies = Object(nookies__WEBPACK_IMPORTED_MODULE_7__["parseCookies"])(ctx), token = _parseCookies.token;
-
-            if (token) {
-              _context.next = 3;
-              break;
-            }
-
-            return _context.abrupt("return", {
-              orders: []
-            });
-
-          case 3:
+            page = ctx.query.page ? ctx.query.page : "1";
+            size = 9;
+            url = "".concat(_utils_baseUrl__WEBPACK_IMPORTED_MODULE_6__["default"], "/api/products");
             payload = {
-              headers: {
-                Authorization: token
+              params: {
+                page: page,
+                size: size
               }
-            };
-            url = "".concat(_utils_baseUrl__WEBPACK_IMPORTED_MODULE_8__["default"], "/api/orders");
-            _context.next = 7;
-            return axios__WEBPACK_IMPORTED_MODULE_9___default.a.get(url, payload);
+            }; // fetch data on server
 
-          case 7:
+            _context.next = 6;
+            return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get(url, payload);
+
+          case 6:
             response = _context.sent;
             return _context.abrupt("return", response.data);
 
-          case 9:
+          case 8:
           case "end":
             return _context.stop();
         }
@@ -59246,7 +57905,7 @@ function () {
   };
 }();
 
-/* harmony default export */ __webpack_exports__["default"] = (Account);
+/* harmony default export */ __webpack_exports__["default"] = (Home);
 
 /***/ }),
 
@@ -59264,31 +57923,14 @@ var baseUrl =  false ? undefined : "http://localhost:3000";
 
 /***/ }),
 
-/***/ "./utils/formatDate.js":
-/*!*****************************!*\
-  !*** ./utils/formatDate.js ***!
-  \*****************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-function formatDate(date) {
-  return new Date(date).toLocaleDateString("en-US");
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (formatDate);
-
-/***/ }),
-
-/***/ 3:
-/*!********************************************************************************************************************************************!*\
-  !*** multi next-client-pages-loader?page=%2Faccount&absolutePagePath=C%3A%5CUsers%5CGebruiker%5CDesktop%5Ce-commerce%5Cpages%5Caccount.js ***!
-  \********************************************************************************************************************************************/
+/***/ 0:
+/*!***********************************************************************************************************************************!*\
+  !*** multi next-client-pages-loader?page=%2F&absolutePagePath=C%3A%5CUsers%5CGebruiker%5CDesktop%5Ce-commerce%5Cpages%5Cindex.js ***!
+  \***********************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Faccount&absolutePagePath=C%3A%5CUsers%5CGebruiker%5CDesktop%5Ce-commerce%5Cpages%5Caccount.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Faccount&absolutePagePath=C%3A%5CUsers%5CGebruiker%5CDesktop%5Ce-commerce%5Cpages%5Caccount.js!./");
+module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2F&absolutePagePath=C%3A%5CUsers%5CGebruiker%5CDesktop%5Ce-commerce%5Cpages%5Cindex.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=C%3A%5CUsers%5CGebruiker%5CDesktop%5Ce-commerce%5Cpages%5Cindex.js!./");
 
 
 /***/ }),
@@ -59304,5 +57946,5 @@ module.exports = dll_01f9a3fa864a7b7414d8;
 
 /***/ })
 
-},[[3,"static/runtime/webpack.js"]]]);
-//# sourceMappingURL=account.js.map
+},[[0,"static/runtime/webpack.js"]]]);
+//# sourceMappingURL=index.js.map
