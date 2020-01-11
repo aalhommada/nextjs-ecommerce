@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 10);
+/******/ 	return __webpack_require__(__webpack_require__.s = 11);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -126,6 +126,53 @@ const CartSchema = new mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.Schema({
   }]
 });
 /* harmony default export */ __webpack_exports__["default"] = (mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.models.Cart || mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.model("Cart", CartSchema));
+
+/***/ }),
+
+/***/ "./models/Order.js":
+/*!*************************!*\
+  !*** ./models/Order.js ***!
+  \*************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mongoose */ "mongoose");
+/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mongoose__WEBPACK_IMPORTED_MODULE_0__);
+
+const {
+  ObjectId,
+  Number
+} = mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.Schema.Types;
+const OrderSchema = new mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.Schema({
+  user: {
+    type: ObjectId,
+    ref: "User"
+  },
+  products: [{
+    quantity: {
+      type: Number,
+      default: 1
+    },
+    product: {
+      type: ObjectId,
+      ref: "Product"
+    }
+  }],
+  email: {
+    type: String,
+    required: true
+  },
+  total: {
+    type: Number,
+    required: true
+  }
+}, {
+  timestamps: true
+}); // prettier-ignore
+
+/* harmony default export */ __webpack_exports__["default"] = (mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.models.Order || mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.model("Order", OrderSchema));
 
 /***/ }),
 
@@ -176,206 +223,142 @@ const ProductSchema = new mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.Schema
 
 /***/ }),
 
-/***/ "./pages/api/cart.js":
-/*!***************************!*\
-  !*** ./pages/api/cart.js ***!
-  \***************************/
+/***/ "./pages/api/checkout.js":
+/*!*******************************!*\
+  !*** ./pages/api/checkout.js ***!
+  \*******************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mongoose */ "mongoose");
-/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mongoose__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jsonwebtoken */ "jsonwebtoken");
-/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jsonwebtoken__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _models_Cart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../models/Cart */ "./models/Cart.js");
-/* harmony import */ var _models_Product__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../models/Product */ "./models/Product.js");
-/* harmony import */ var _utils_connectDb__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/connectDb */ "./utils/connectDb.js");
+/* harmony import */ var stripe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! stripe */ "stripe");
+/* harmony import */ var stripe__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(stripe__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var uuid_v4__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! uuid/v4 */ "uuid/v4");
+/* harmony import */ var uuid_v4__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(uuid_v4__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jsonwebtoken */ "jsonwebtoken");
+/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jsonwebtoken__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _models_Cart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../models/Cart */ "./models/Cart.js");
+/* harmony import */ var _models_Product__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../models/Product */ "./models/Product.js");
+/* harmony import */ var _models_Order__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../models/Order */ "./models/Order.js");
+/* harmony import */ var _utils_calculateCartTotal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../utils/calculateCartTotal */ "./utils/calculateCartTotal.js");
 
 
 
 
 
-Object(_utils_connectDb__WEBPACK_IMPORTED_MODULE_4__["default"])();
-const {
-  ObjectId
-} = mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.Types;
+
+
+const stripe = stripe__WEBPACK_IMPORTED_MODULE_0___default()("sk_test_fSSjVAospx1AfH6cSsFLhRAK00dcKdo6Hj");
 /* harmony default export */ __webpack_exports__["default"] = (async (req, res) => {
-  switch (req.method) {
-    case "GET":
-      await handleGetRequest(req, res);
-      break;
-
-    case "PUT":
-      await handlePutRequest(req, res);
-      break;
-
-    case "DELETE":
-      await handleDeleteRequest(req, res);
-      break;
-
-    default:
-      res.status(405).send(`Method ${req.method} not allowed`);
-      break;
-  }
-});
-
-async function handleGetRequest(req, res) {
-  if (!("authorization" in req.headers)) {
-    return res.status(401).send("No authorization token");
-  }
+  const {
+    paymentData
+  } = req.body;
 
   try {
+    // 1) Verify and get user id from token
     const {
       userId
-    } = jsonwebtoken__WEBPACK_IMPORTED_MODULE_1___default.a.verify(req.headers.authorization, "mySecret");
-    const cart = await _models_Cart__WEBPACK_IMPORTED_MODULE_2__["default"].findOne({
+    } = jsonwebtoken__WEBPACK_IMPORTED_MODULE_2___default.a.verify(req.headers.authorization, "mySecret"); // 2) Find cart based on user id, populate it
+
+    const cart = await _models_Cart__WEBPACK_IMPORTED_MODULE_3__["default"].findOne({
       user: userId
     }).populate({
       path: "products.product",
       model: "Product",
-      model: _models_Product__WEBPACK_IMPORTED_MODULE_3__["default"]
-    });
-    res.status(200).json(cart.products);
-  } catch (error) {
-    console.error(error);
-    res.status(403).send("Please login again");
-  }
-}
+      model: _models_Product__WEBPACK_IMPORTED_MODULE_4__["default"]
+    }); // 3) Calculate cart totals again from cart products
 
-async function handlePutRequest(req, res) {
-  const {
-    quantity,
-    productId
-  } = req.body;
-
-  if (!("authorization" in req.headers)) {
-    return res.status(401).send("No authorization token");
-  }
-
-  try {
     const {
-      userId
-    } = jsonwebtoken__WEBPACK_IMPORTED_MODULE_1___default.a.verify(req.headers.authorization, "mySecret"); // Get user cart based on userId
+      cartTotal,
+      stripeTotal
+    } = Object(_utils_calculateCartTotal__WEBPACK_IMPORTED_MODULE_6__["default"])(cart.products); // 4) Get email from payment data, see if email linked with existing Stripe customer
 
-    const cart = await _models_Cart__WEBPACK_IMPORTED_MODULE_2__["default"].findOne({
-      user: userId
-    }); // Check if product already exists in cart
+    const prevCustomer = await stripe.customers.list({
+      email: paymentData.email,
+      limit: 1
+    });
+    const isExistingCustomer = prevCustomer.data.length > 0; // 5) If not existing customer, create them based on their email
 
-    const productExists = cart.products.some(doc => ObjectId(productId).equals(doc.product)); // If so, increment quantity (by number provided to request)
+    let newCustomer;
 
-    if (productExists) {
-      await _models_Cart__WEBPACK_IMPORTED_MODULE_2__["default"].findOneAndUpdate({
-        _id: cart._id,
-        "products.product": productId
-      }, {
-        $inc: {
-          "products.$.quantity": quantity
-        }
-      });
-    } else {
-      // If not, add new product with given quantity
-      const newProduct = {
-        quantity,
-        product: productId
-      };
-      await _models_Cart__WEBPACK_IMPORTED_MODULE_2__["default"].findOneAndUpdate({
-        _id: cart._id
-      }, {
-        $addToSet: {
-          products: newProduct
-        }
+    if (!isExistingCustomer) {
+      newCustomer = await stripe.customers.create({
+        email: paymentData.email,
+        source: paymentData.id
       });
     }
 
-    res.status(200).send("Cart updated");
-  } catch (error) {
-    console.error(error);
-    res.status(403).send("Please login again");
-  }
-}
+    const customer = isExistingCustomer && prevCustomer.data[0].id || newCustomer.id; // 6) Create charge with total, send receipt email
 
-async function handleDeleteRequest(req, res) {
-  const {
-    productId
-  } = req.query;
-
-  if (!("authorization" in req.headers)) {
-    return res.status(401).send("No authorization token");
-  }
-
-  try {
-    const {
-      userId
-    } = jsonwebtoken__WEBPACK_IMPORTED_MODULE_1___default.a.verify(req.headers.authorization, "mySecret");
-    const cart = await _models_Cart__WEBPACK_IMPORTED_MODULE_2__["default"].findOneAndUpdate({
-      user: userId
+    const charge = await stripe.charges.create({
+      currency: "usd",
+      amount: stripeTotal,
+      receipt_email: paymentData.email,
+      customer,
+      description: `Checkout | ${paymentData.email} | ${paymentData.id}`
     }, {
-      $pull: {
-        products: {
-          product: productId
-        }
+      idempotency_key: uuid_v4__WEBPACK_IMPORTED_MODULE_1___default()()
+    }); // 7) Add order data to database
+
+    await new _models_Order__WEBPACK_IMPORTED_MODULE_5__["default"]({
+      user: userId,
+      email: paymentData.email,
+      total: cartTotal,
+      products: cart.products
+    }).save(); // 8) Clear products in cart
+
+    await _models_Cart__WEBPACK_IMPORTED_MODULE_3__["default"].findOneAndUpdate({
+      _id: cart._id
+    }, {
+      $set: {
+        products: []
       }
-    }, {
-      new: true
-    }).populate({
-      path: "products.product",
-      model: "Product"
-    });
-    res.status(200).json(cart.products);
+    }); // 9) Send back success (200) response
+
+    res.status(200).send("Checkout successful");
   } catch (error) {
     console.error(error);
-    res.status(403).send("Please login again");
+    res.status(500).send("Error processing charge");
   }
-}
+});
 
 /***/ }),
 
-/***/ "./utils/connectDb.js":
-/*!****************************!*\
-  !*** ./utils/connectDb.js ***!
-  \****************************/
+/***/ "./utils/calculateCartTotal.js":
+/*!*************************************!*\
+  !*** ./utils/calculateCartTotal.js ***!
+  \*************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mongoose */ "mongoose");
-/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mongoose__WEBPACK_IMPORTED_MODULE_0__);
-
-const connection = {};
-
-async function connectDb() {
-  if (connection.isConnected) {
-    // Use existing database connection
-    console.log("Using existing connection");
-    return;
-  } // Use new database connection
-
-
-  const db = await mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.connect("mongodb+srv://aalhommada:aalhommada111@furniture-ecommerce-muqlj.azure.mongodb.net/test?retryWrites=true&w=majority", {
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  });
-  console.log("DB Connected");
-  connection.isConnected = db.connections[0].readyState;
+function calculateCartTotal(products) {
+  const total = products.reduce((acc, el) => {
+    acc += el.product.price * el.quantity;
+    return acc;
+  }, 0);
+  const cartTotal = (total * 100 / 100).toFixed(2);
+  const stripeTotal = Number((total * 100).toFixed(2));
+  return {
+    cartTotal,
+    stripeTotal
+  };
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (connectDb);
+/* harmony default export */ __webpack_exports__["default"] = (calculateCartTotal);
 
 /***/ }),
 
-/***/ 10:
-/*!*********************************!*\
-  !*** multi ./pages/api/cart.js ***!
-  \*********************************/
+/***/ 11:
+/*!*************************************!*\
+  !*** multi ./pages/api/checkout.js ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Gebruiker\Desktop\e-commerce\pages\api\cart.js */"./pages/api/cart.js");
+module.exports = __webpack_require__(/*! C:\Users\Gebruiker\Desktop\e-commerce\pages\api\checkout.js */"./pages/api/checkout.js");
 
 
 /***/ }),
@@ -411,7 +394,29 @@ module.exports = require("mongoose");
 
 module.exports = require("shortid");
 
+/***/ }),
+
+/***/ "stripe":
+/*!*************************!*\
+  !*** external "stripe" ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("stripe");
+
+/***/ }),
+
+/***/ "uuid/v4":
+/*!**************************!*\
+  !*** external "uuid/v4" ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("uuid/v4");
+
 /***/ })
 
 /******/ });
-//# sourceMappingURL=cart.js.map
+//# sourceMappingURL=checkout.js.map

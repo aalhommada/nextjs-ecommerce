@@ -477,7 +477,7 @@ function Layout(_ref) {
       lineNumber: 19
     },
     __self: this
-  }, "Furniture")), __jsx(_Header__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, "aalhommada-ecommerce")), __jsx(_Header__WEBPACK_IMPORTED_MODULE_3__["default"], {
     user: user,
     __source: {
       fileName: _jsxFileName,

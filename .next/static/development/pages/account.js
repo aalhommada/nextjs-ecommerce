@@ -59281,7 +59281,7 @@ function formatDate(date) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 1:
 /*!********************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Faccount&absolutePagePath=C%3A%5CUsers%5CGebruiker%5CDesktop%5Ce-commerce%5Cpages%5Caccount.js ***!
   \********************************************************************************************************************************************/
@@ -59304,5 +59304,5 @@ module.exports = dll_01f9a3fa864a7b7414d8;
 
 /***/ })
 
-},[[3,"static/runtime/webpack.js"]]]);
+},[[1,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=account.js.map

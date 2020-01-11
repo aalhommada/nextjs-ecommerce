@@ -88,15 +88,15 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 10);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./models/Cart.js":
-/*!************************!*\
-  !*** ./models/Cart.js ***!
-  \************************/
+/***/ "./models/Order.js":
+/*!*************************!*\
+  !*** ./models/Order.js ***!
+  \*************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -109,7 +109,7 @@ const {
   ObjectId,
   Number
 } = mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.Schema.Types;
-const CartSchema = new mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.Schema({
+const OrderSchema = new mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.Schema({
   user: {
     type: ObjectId,
     ref: "User"
@@ -123,212 +123,61 @@ const CartSchema = new mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.Schema({
       type: ObjectId,
       ref: "Product"
     }
-  }]
-});
-/* harmony default export */ __webpack_exports__["default"] = (mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.models.Cart || mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.model("Cart", CartSchema));
-
-/***/ }),
-
-/***/ "./models/Product.js":
-/*!***************************!*\
-  !*** ./models/Product.js ***!
-  \***************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mongoose */ "mongoose");
-/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mongoose__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var shortid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! shortid */ "shortid");
-/* harmony import */ var shortid__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(shortid__WEBPACK_IMPORTED_MODULE_1__);
-
-
-const {
-  String,
-  Number
-} = mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.Schema.Types;
-const ProductSchema = new mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.Schema({
-  name: {
+  }],
+  email: {
     type: String,
     required: true
   },
-  price: {
+  total: {
     type: Number,
     required: true
-  },
-  sku: {
-    type: String,
-    unique: true,
-    default: shortid__WEBPACK_IMPORTED_MODULE_1___default.a.generate
-  },
-  description: {
-    type: String,
-    required: true
-  },
-  mediaUrl: {
-    type: String,
-    required: true
   }
+}, {
+  timestamps: true
 }); // prettier-ignore
 
-/* harmony default export */ __webpack_exports__["default"] = (mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.models.Product || mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.model("Product", ProductSchema));
+/* harmony default export */ __webpack_exports__["default"] = (mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.models.Order || mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.model("Order", OrderSchema));
 
 /***/ }),
 
-/***/ "./pages/api/cart.js":
-/*!***************************!*\
-  !*** ./pages/api/cart.js ***!
-  \***************************/
+/***/ "./pages/api/orders.js":
+/*!*****************************!*\
+  !*** ./pages/api/orders.js ***!
+  \*****************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mongoose */ "mongoose");
-/* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mongoose__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _models_Order__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../models/Order */ "./models/Order.js");
 /* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jsonwebtoken */ "jsonwebtoken");
 /* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jsonwebtoken__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _models_Cart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../models/Cart */ "./models/Cart.js");
-/* harmony import */ var _models_Product__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../models/Product */ "./models/Product.js");
-/* harmony import */ var _utils_connectDb__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/connectDb */ "./utils/connectDb.js");
+/* harmony import */ var _utils_connectDb__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/connectDb */ "./utils/connectDb.js");
 
 
 
-
-
-Object(_utils_connectDb__WEBPACK_IMPORTED_MODULE_4__["default"])();
-const {
-  ObjectId
-} = mongoose__WEBPACK_IMPORTED_MODULE_0___default.a.Types;
+Object(_utils_connectDb__WEBPACK_IMPORTED_MODULE_2__["default"])();
 /* harmony default export */ __webpack_exports__["default"] = (async (req, res) => {
-  switch (req.method) {
-    case "GET":
-      await handleGetRequest(req, res);
-      break;
-
-    case "PUT":
-      await handlePutRequest(req, res);
-      break;
-
-    case "DELETE":
-      await handleDeleteRequest(req, res);
-      break;
-
-    default:
-      res.status(405).send(`Method ${req.method} not allowed`);
-      break;
-  }
-});
-
-async function handleGetRequest(req, res) {
-  if (!("authorization" in req.headers)) {
-    return res.status(401).send("No authorization token");
-  }
-
   try {
     const {
       userId
     } = jsonwebtoken__WEBPACK_IMPORTED_MODULE_1___default.a.verify(req.headers.authorization, "mySecret");
-    const cart = await _models_Cart__WEBPACK_IMPORTED_MODULE_2__["default"].findOne({
+    const orders = await _models_Order__WEBPACK_IMPORTED_MODULE_0__["default"].find({
       user: userId
-    }).populate({
-      path: "products.product",
-      model: "Product",
-      model: _models_Product__WEBPACK_IMPORTED_MODULE_3__["default"]
-    });
-    res.status(200).json(cart.products);
-  } catch (error) {
-    console.error(error);
-    res.status(403).send("Please login again");
-  }
-}
-
-async function handlePutRequest(req, res) {
-  const {
-    quantity,
-    productId
-  } = req.body;
-
-  if (!("authorization" in req.headers)) {
-    return res.status(401).send("No authorization token");
-  }
-
-  try {
-    const {
-      userId
-    } = jsonwebtoken__WEBPACK_IMPORTED_MODULE_1___default.a.verify(req.headers.authorization, "mySecret"); // Get user cart based on userId
-
-    const cart = await _models_Cart__WEBPACK_IMPORTED_MODULE_2__["default"].findOne({
-      user: userId
-    }); // Check if product already exists in cart
-
-    const productExists = cart.products.some(doc => ObjectId(productId).equals(doc.product)); // If so, increment quantity (by number provided to request)
-
-    if (productExists) {
-      await _models_Cart__WEBPACK_IMPORTED_MODULE_2__["default"].findOneAndUpdate({
-        _id: cart._id,
-        "products.product": productId
-      }, {
-        $inc: {
-          "products.$.quantity": quantity
-        }
-      });
-    } else {
-      // If not, add new product with given quantity
-      const newProduct = {
-        quantity,
-        product: productId
-      };
-      await _models_Cart__WEBPACK_IMPORTED_MODULE_2__["default"].findOneAndUpdate({
-        _id: cart._id
-      }, {
-        $addToSet: {
-          products: newProduct
-        }
-      });
-    }
-
-    res.status(200).send("Cart updated");
-  } catch (error) {
-    console.error(error);
-    res.status(403).send("Please login again");
-  }
-}
-
-async function handleDeleteRequest(req, res) {
-  const {
-    productId
-  } = req.query;
-
-  if (!("authorization" in req.headers)) {
-    return res.status(401).send("No authorization token");
-  }
-
-  try {
-    const {
-      userId
-    } = jsonwebtoken__WEBPACK_IMPORTED_MODULE_1___default.a.verify(req.headers.authorization, "mySecret");
-    const cart = await _models_Cart__WEBPACK_IMPORTED_MODULE_2__["default"].findOneAndUpdate({
-      user: userId
-    }, {
-      $pull: {
-        products: {
-          product: productId
-        }
-      }
-    }, {
-      new: true
+    }).sort({
+      createdAt: "desc"
     }).populate({
       path: "products.product",
       model: "Product"
     });
-    res.status(200).json(cart.products);
+    res.status(200).json({
+      orders
+    });
   } catch (error) {
     console.error(error);
     res.status(403).send("Please login again");
   }
-}
+});
 
 /***/ }),
 
@@ -368,14 +217,14 @@ async function connectDb() {
 
 /***/ }),
 
-/***/ 10:
-/*!*********************************!*\
-  !*** multi ./pages/api/cart.js ***!
-  \*********************************/
+/***/ 7:
+/*!***********************************!*\
+  !*** multi ./pages/api/orders.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Gebruiker\Desktop\e-commerce\pages\api\cart.js */"./pages/api/cart.js");
+module.exports = __webpack_require__(/*! C:\Users\Gebruiker\Desktop\e-commerce\pages\api\orders.js */"./pages/api/orders.js");
 
 
 /***/ }),
@@ -400,18 +249,7 @@ module.exports = require("jsonwebtoken");
 
 module.exports = require("mongoose");
 
-/***/ }),
-
-/***/ "shortid":
-/*!**************************!*\
-  !*** external "shortid" ***!
-  \**************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("shortid");
-
 /***/ })
 
 /******/ });
-//# sourceMappingURL=cart.js.map
+//# sourceMappingURL=orders.js.map
